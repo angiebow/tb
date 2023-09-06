@@ -1,0 +1,30 @@
+@font-face {
+  font-family: "regular";
+  src: url("/public/fonts/monumentextendedreg.otf");
+}
+
+@font-face {
+  font-family: "bold";
+  src: url("/public/fonts/monumentextendedbold.otf");
+}
+
+@font-face {
+  font-family: "lunema";
+  src: url("/public/fonts/lunema-regular.ttf");
+}
+
+.h1{
+  font-family: "bold";
+}
+
+.p{
+  font-family: "regular";
+}
+
+.button{
+  font-family: "lunema";
+}
+
+.formcar{
+  font-family: "lunema";
+}

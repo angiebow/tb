@@ -1,0 +1,8 @@
+@font-face {
+  font-family: "lunema";
+  src: url("/public/fonts/lunema-regular.ttf");
+}
+
+.all {
+  font-family: "lunema";
+}
