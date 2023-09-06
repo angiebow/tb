@@ -185,9 +185,9 @@ const HomePage = () => {
             <div class={`flex justify-center text-nSize font-bold`}>Toolbeng Ride</div>
             <div class={`my-1 centex text-kSize`}>Perbaiki motormu tanpa perlu beranjak dari tempatmu</div>
             <div class="flex justify-center">
-                {cars.map((car) => (
-                  <Link class={`justify-center text-kSize bg-toolbeng-red text-white px-4 py-2 rounded hover:bg-red-700 ${lun.className}`} href={car.url}>
-                    {car.title}
+                {rides.map((ride) => (
+                  <Link class={`justify-center text-kSize bg-toolbeng-red text-white px-4 py-2 rounded hover:bg-red-700 ${lun.className}`} href={ride.url}>
+                    {ride.title}
                   </Link>
                 ))}
               </div>
@@ -299,6 +299,7 @@ const HomePage = () => {
 
 
 {/*Testimonials*/}
+{/*Large Screen*/}
           <div class="bg-testimonial">
           <div class={`flex text-hSize justify-center ${me.className}`}>Customer Testimonials</div>
           <div class={`flex text-nSize justify-center ${lun.className}`}>Let's see what other people think about us.</div>
@@ -448,6 +449,7 @@ const HomePage = () => {
             </Slider>
           </div>
         </div>
+{/*Small Screen*/}
 
         {/* FAQ */}
         <div class="bg-faq">

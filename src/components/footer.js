@@ -70,7 +70,7 @@ const Footer = () => {
                 <div className={`underline flex flex-col md:flex-row justify-between items-center ${lun.className}`}>
                     <button className={`m-4`}>2023 Toolbeng. All rights reserved.</button>
                     <button className={`m-4`}>Privacy Policy</button>
-                    <button className={`m-4`}>Terms of Service</button>
+                    <Link href={"/Tos"} className={`m-4`}>Terms of Service</Link>
                     <button className={`m-4`}>Cookie Settings</button>
                 </div>
             </div>

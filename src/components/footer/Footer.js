@@ -36,7 +36,7 @@ const Footer = () => {
     return (
         <footer className="bg-[#0A3771] text-white py-8">
             <div className="container mx-auto">
-                <div className="flex flex-col md:flex-row justify-between items-center">
+                <div className="flex flex-col justify-between items-center">
                     <div className="flex items-center mb-4 md:mb-0">
                         <a href="/" className={me.className + " text-kSize mr-10"}>
                             ToolBeng
@@ -65,10 +65,10 @@ const Footer = () => {
 
                 <hr className="my-8 border-t border-white" />
 
-                <div className={`flex flex-col md:flex-row justify-between items-center ${lun.className}`}>
-                    <div className={`m-4`}>2023 Toolbeng. All rights reserved.</div>
+                <div className={`flex md:flex-row justify-between items-center ${lun.className}`}>
+                    <div className={`flex m-4`}>2023 Toolbeng. All rights reserved.</div>
                     <div className={`m-4`}>Privacy Policy</div>
-                    <div className={`m-4`}>Terms of Service</div>
+                    <Link href="/Tos" className={`m-4`}>Terms of Service</Link>
                     <div className={`m-4`}>Cookie Settings</div>
                 </div>
             </div>
