@@ -9,6 +9,7 @@ import React, { useState } from 'react';
 import Navbar from '@/components/navbar';
 import Footer from '@/components/footer';
 import Link from 'next/link';
+import { useEffect } from 'react';
 
 const lun = localFont({ src: '/lunema-regular.ttf' });
 const me = localFont({ src: '/MonumentExtended-Ultrabold.otf' });
@@ -114,6 +115,22 @@ const HomePage = () => {
     },
   ];
 
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsLargeScreen(window.innerWidth >= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    handleResize();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <div class="overflow-hidden">
       <Navbar />
@@ -127,9 +144,6 @@ const HomePage = () => {
             di tengah perjalanan, kami siap membantu Anda melanjutkan perjalanan dengan aman dan nyaman.
           </div>
           <div class={`mr-1 mt-1 flex justify-start items-center`}>
-            {/* <a href="#" class={`ml-10 text-mSize m-5 bg-toolbeng-red text-white px-4 py-2 rounded hover:bg-red-700 ${lun.className}`}>
-        Get Started
-      </a> */}
 
             <div>
               {accounts.map((account) => (
@@ -139,9 +153,6 @@ const HomePage = () => {
               ))}
             </div>
 
-            {/* <a href="#" class={`text-mSize m-5 px-4 py-2 border border-toolbeng-red text-white rounded hover:bg-toolbeng-red hover:text-white ${lun.className}`}>
-        Sign In
-      </a> */}
             <div>
               {signins.map((signin) => (
                 <Link class={`text-mSize m-5 px-4 py-4 border border-toolbeng-red text-white rounded hover:bg-toolbeng-red hover:text-white ${lun.className}`} key={signin.id} href={signin.url}>
@@ -160,120 +171,135 @@ const HomePage = () => {
           <div class={`mx-5 aboutbox w-45 text-nSize ${lun.className}`}>Toolbeng adalah platform yang menyediakan jasa memperbaiki kendaraan dan jual beli suku cadang dengan menggunakan sistem order dan pemesanan berbasis online.</div>
         </div>
 
+        <div class="bg-service">
         {/* Our Service */}
-        {/* <div class="bg-service">
-          <div class={`mb-5 flex text-hSize justify-center ${me.className}`}>Our Service</div>
+        <div>
+          {isLargeScreen ? (
+            <div>
+      {/* Large Screen */}
+      <div class={`mb-5 flex text-hSize justify-center ${me.className}`}>Our Service</div>
 
-          <div class={`gap-3 flex items-bottom justify-center ${lun.className}}`}>
-            <div class={`servicebox border-black border-2  p-6 justify-center flex flex-col rounded-lg`}>
-              <img src="serRide.svg" alt="star" class="w-50 p-8" />
-              <div class={`${lun.className} flex justify-center text-nSize font-bold`}>Toolbeng Ride</div>
-              <div class={`my-1 centex text-kSize`}>Perbaiki motormu tanpa perlu beranjak dari tempatmu</div>
-              <div class="flex justify-center">
-                {rides.map((ride) => (
-                  <Link class={`justify-center text-kSize bg-toolbeng-blue text-white px-4 py-2 rounded hover:bg-blue-700 ${lun.className}`} key={ride.id} href={ride.url}>
-                    {ride.title}
-                  </Link>
-                ))}
-              </div>
-            </div>
-            <div class={`servicebox border-black border-2  p-6 justify-center flex flex-col rounded-lg`}>
-              <img src="serCar.svg" alt="star" class="w-50 p-8" />
-              <div class={`${lun.className} flex justify-center text-nSize font-bold`}>Toolbeng Car</div>
-              <div class={`my-1 centex text-kSize`}>Perbaiki mobilmu tanpa perlu beranjak dari tempatmu</div>
-              <div class="flex justify-center">
+        <div class={`gap-3 flex items-bottom justify-center ${lun.className}}`}>
+          <div class={`servicebox`}>
+            <img src="serRide.svg" alt="star" class="w-50 p-8"/>
+            <div class={`flex justify-center text-nSize font-bold`}>Toolbeng Ride</div>
+            <div class={`my-1 centex text-kSize`}>Perbaiki motormu tanpa perlu beranjak dari tempatmu</div>
+            <div class="flex justify-center">
                 {cars.map((car) => (
                   <Link class={`justify-center text-kSize bg-toolbeng-red text-white px-4 py-2 rounded hover:bg-red-700 ${lun.className}`} href={car.url}>
                     {car.title}
                   </Link>
                 ))}
               </div>
-            </div>
-            <div class={`servicebox border-black border-2 p-6 justify-center flex flex-col rounded-lg`}>
-              <img src="serService.svg" alt="star" class="w-50 p-8" />
-              <div class={`${lun.className} flex justify-center text-nSize font-bold`}>Toolbeng Service</div>
-              <div class={`my-1 centex text-kSize`}>Temukan bengkel terbaik di dekatmu</div>
-              <div class="flex justify-center">
-                <Link href="/Service" class={`justify-center text-kSize bg-gray-700 text-white px-4 py-2 rounded ${lun.className}`}>
-                  Coming Soon
-                </Link>
-              </div>
-            </div>
-            <div class={`servicebox border-black border-2 p-6 justify-center flex flex-col rounded-lg`}>
-              <img src="serShop.svg" alt="star" class="w-50 p-8" />
-              <div class={`${lun.className} flex justify-center text-nSize font-bold`}>Toolbeng Shop</div>
-              <div class={`my-1 centex text-kSize`}>Belanja suku cadang tidak pernah semudah ini</div>
-              <div class="flex justify-center">
-                <Link href="/Shop" class={`justify-center text-kSize bg-gray-700 text-white px-4 py-2 rounded ${lun.className}`}>
-                  Cooming Soon
-                </Link>
-              </div>
+          </div>
+          <div class={`servicebox`}>
+            <img src="serCar.svg" alt="star" class="w-50 p-8"/>
+            <div class={`flex justify-center text-nSize font-bold`}>Toolbeng Car</div>
+            <div class={`my-1 centex text-kSize`}>Perbaiki mobilmu tanpa perlu beranjak dari tempatmu</div>
+            <div class="flex justify-center">
+            {cars.map((car) => (
+                  <Link class={`justify-center text-kSize bg-toolbeng-red text-white px-4 py-2 rounded hover:bg-red-700 ${lun.className}`} href={car.url}>
+                    {car.title}
+                  </Link>
+                ))}
             </div>
           </div>
-        </div> */}
-        <div class="bg-service">
-        <div class={`content w-screen mb-5 flex text-hSize justify-center ${me.className}`}>Our Service</div>
-    <div class={`lg:w-1/2 xl:w-1/3 ${lun.className} ml-20 container flex flex-col mx:flex md:flex-row gap-3 items-center justify-center`}>    
-    <div class="xl-flex toolbeng-ride border border-black rounded-lg p-2 w-96 md:w-auto flex md:relative z-1 md:px-6 md:py-8 gap-4">
-      <div class="image w-1/2 md:absolute z-2 md:-top-12 md:left-20 md:w-32">
-      <img src="serRide.svg" alt="star" class="w-50 p-8" />
-      </div>
-      <div class="flex flex-col justify-center text-center gap-3 w-1/2 md:w-60 md:pt-10">
-        <h1 class="font-bold">Toolbeng Ride</h1>
-        <p>Perbaiki motormu tanpa perlu beranjak dari tempatmu</p>
-        <div class="flex justify-center">
+          <div class={`servicebox`}>
+            <img src="serService.svg" alt="star" class="w-50 p-8"/>
+            <div class={`flex justify-center text-nSize font-bold`}>Toolbeng Service</div>
+            <div class={`my-1 centex text-kSize`}>Temukan bengkel terbaik di dekatmu</div>
+            <div class="flex justify-center">
+            <Link href="/Service" class={`justify-center text-kSize bg-gray-700 text-white px-4 py-2 rounded ${lun.className}`}>
+                  Coming Soon
+                </Link>   
+            </div>
+          </div>
+          <div class={`servicebox`}>
+            <img src="serShop.svg" alt="star" class="w-50 p-8"/>
+            <div class={`flex justify-center text-nSize font-bold`}>Toolbeng Shop</div>
+            <div class={`my-1 centex text-kSize`}>Belanja suku cadang tidak pernah semudah ini</div>
+            <div class="flex justify-center">
+            <Link href="/Shop" class={`justify-center text-kSize bg-gray-700 text-white px-4 py-2 rounded ${lun.className}`}>
+                  Cooming Soon
+                </Link> 
+            </div>
+          </div>
+        </div>
+            </div>
+          ) : (
+            <div>
+        {/*Small screen */}
+
+        <div class={`mb-5 flex text-hSize justify-center ${me.className}`}>Our Service</div>
+            <div class={`${lun.className} ml-20 container flex flex-col md:flex-row gap-3 items-center justify-center`}>
+        <div class="toolbeng-ride border border-black rounded-lg p-2 w-96 md:w-auto flex md:relative z-1 md:px-6 md:py-8 gap-4">
+          <div class="image w-1/2 md:absolute z-2 md:-top-12 md:left-20 md:w-32">
+          <img src="serRide.svg" alt="star" class="w-50 p-8" />
+          </div>
+          <div class="flex flex-col justify-center text-center gap-3 w-1/2 md:w-60 md:pt-10">
+            <h1 class="font-bold">Toolbeng Ride</h1>
+            <p>Perbaiki motormu tanpa perlu beranjak dari tempatmu</p>
+              <div class="flex justify-center">
                 {rides.map((ride) => (
                   <Link class={`justify-center text-kSize bg-toolbeng-blue text-white px-4 py-2 rounded hover:bg-blue-700 ${lun.className}`} key={ride.id} href={ride.url}>
                     {ride.title}
                   </Link>
                 ))}
               </div>
-                    </div>
-    </div>
-
-    <div class="toolbeng-ride border border-black rounded-lg p-2 w-96 md:w-auto flex md:relative z-1 md:px-6 md:py-8 gap-4">
-      <div class="flex flex-col justify-center text-center gap-3 w-1/2 md:w-60 md:pt-10">
-        <h1 class="font-bold">Toolbeng Ride</h1>
-        <p>Perbaiki motormu tanpa perlu beranjak dari tempatmu</p>
-        <div class="bg-[#0A3771] border border-transparent rounded-lg px-0.5 py-2 text-white">Order Now</div>
-      </div>
-      <div class="image w-1/2 md:absolute z-2 md:-top-12 md:left-20 md:w-32">
-      <img src="serCar.svg" alt="star" class="w-50 p-8" />
-      </div>
-    </div>
-
-    <div class="toolbeng-ride border border-black rounded-lg p-2 w-96 md:w-auto flex md:relative z-1 md:px-6 md:py-8 gap-4">
-      <div class="image w-1/2 md:absolute z-2 md:-top-12 md:left-20 md:w-32">
-      <img src="serService.svg" alt="star" class="w-50 p-8" />
-      </div>
-      <div class="flex flex-col justify-center text-center gap-3 w-1/2 md:w-60 md:pt-10">
-        <h1 class="font-bold">Toolbeng Ride</h1>
-        <p>Perbaiki motormu tanpa perlu beranjak dari tempatmu</p>
-        <div class="flex justify-center">
+                  </div>
+        </div>
+    
+        <div class="toolbeng-ride border border-black rounded-lg p-2 w-96 md:w-auto flex md:relative z-1 md:px-6 md:py-8 gap-4">
+          <div class="flex flex-col justify-center text-center gap-3 w-1/2 md:w-60 md:pt-10">
+            <h1 class="font-bold">Toolbeng Car</h1>
+            <p>Perbaiki mobilmu tanpa perlu beranjak dari tempatmu</p>
+              <div class="flex justify-center">
                 {cars.map((car) => (
                   <Link class={`justify-center text-kSize bg-toolbeng-red text-white px-4 py-2 rounded hover:bg-red-700 ${lun.className}`} href={car.url}>
                     {car.title}
                   </Link>
                 ))}
               </div>
-                    </div>
-    </div>
-
-    <div class="toolbeng-ride border border-black rounded-lg p-2 w-96 md:w-auto flex md:relative z-1 md:px-6 md:py-8 gap-4">
-      <div class="flex flex-col justify-center text-center gap-3 w-1/2 md:w-60 md:pt-10">
-        <h1 class="font-bold">Toolbeng Ride</h1>
-        <p>Perbaiki motormu tanpa perlu beranjak dari tempatmu</p>
-        <div class="bg-[#0A3771] border border-transparent rounded-lg px-0.5 py-2 text-white">Order Now</div>
+                </div>
+          <div class="image w-1/2 md:absolute z-2 md:-top-12 md:left-20 md:w-32">
+          <img src="serCar.svg" alt="star" class="w-50 p-8" />
+          </div>
+        </div>
+    
+        <div class="toolbeng-ride border border-black rounded-lg p-2 w-96 md:w-auto flex md:relative z-1 md:px-6 md:py-8 gap-4">
+          <div class="image w-1/2 md:absolute z-2 md:-top-12 md:left-20 md:w-32">
+          <img src="serService.svg" alt="star" class="w-50 p-8" />
+          </div>
+          <div class="flex flex-col justify-center text-center gap-3 w-1/2 md:w-60 md:pt-10">
+            <h1 class="font-bold">Toolbeng Service</h1>
+            <p>Temukan bengkel terbaik di dekatmu</p>
+                <Link href="/Service" class={`justify-center text-kSize bg-gray-700 text-white px-4 py-2 rounded ${lun.className}`}>
+                  Coming Soon
+                </Link>          
+          </div>
+        </div>
+    
+        <div class="toolbeng-ride border border-black rounded-lg p-2 w-96 md:w-auto flex md:relative z-1 md:px-6 md:py-8 gap-4">
+          <div class="flex flex-col justify-center text-center gap-3 w-1/2 md:w-60 md:pt-10">
+            <h1 class="font-bold">Toolbeng Shop</h1>
+            <p>Belanja suku cadang tidak pernah semudah ini</p>
+                <Link href="/Shop" class={`justify-center text-kSize bg-gray-700 text-white px-4 py-2 rounded ${lun.className}`}>
+                  Cooming Soon
+                </Link>          
+            </div>
+          <div class="image w-1/2 md:absolute z-2 md:-top-12 md:left-20 md:w-32">
+          <img src="serShop.svg" alt="star" class="w-50 p-8" />
+          </div>
+        </div>
       </div>
-      <div class="image w-1/2 md:absolute z-2 md:-top-12 md:left-20 md:w-32">
-      <img src="serShop.svg" alt="star" class="w-50 p-8" />
-      </div>
-    </div>
-  </div>
-  </div>
+            </div>
+          )}
+        </div>
+      </div>         
 
-        {/* Testimonials */}
-        <div class="bg-testimonial">
+
+{/*Testimonials*/}
+          <div class="bg-testimonial">
           <div class={`flex text-hSize justify-center ${me.className}`}>Customer Testimonials</div>
           <div class={`flex text-nSize justify-center ${lun.className}`}>Let's see what other people think about us.</div>
 
@@ -287,9 +313,7 @@ const HomePage = () => {
                   <img src="star.png" alt="star" class="h-5 w-5" />
                   <img src="star.png" alt="star" class="h-5 w-5" />
                 </div>
-                <div class={`testText`}>
-                <p class={`w-40px testimonial-text py-5 text-kSize ${lun.className}`}>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare."</p>
-                </div>
+                <div class={`py-5 text-kSize ${lun.className}`}>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare."</div>
                 <div class={`flex`}>
                   <img src="man.png" alt="star" class="h-10 w-10" />
                   <div class={`text-kSize font-bold ${lun.className}`}>Darrel Valentino</div>
